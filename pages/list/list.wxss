@@ -1,0 +1,46 @@
+.lists{
+  width: 90%;
+}
+.list-i{
+  margin: 8rpx 0;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background: #eee;
+  border-radius:5px; 
+}
+.title{
+  height: 60rpx;
+  border-bottom: 1px solid #999;
+  line-height: 60rpx;
+}
+.content{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 10rpx 0;
+  color:blue;
+}
+.time{
+  color: green;
+  text-align: center; 
+  margin-top:10rpx; 
+}
+
+.add{
+  width:100rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 80rpx;
+  bottom: 80rpx;
+  border: 1px solid royalblue;
+  border-radius: 50%;
+  display: flex;
+  display: -webkit-flex; 
+  align-items: center; 
+  justify-content: center;   
+  background: #b3f0ff;
+}
+.add image{
+    width: 40rpx;  
+   height: 40rpx; 
+} 

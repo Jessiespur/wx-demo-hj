@@ -1,0 +1,14 @@
+<view class="container">
+  <scroll-view scroll-y="true" class="lists">
+    <block wx:for="{{lists}}">
+      <view class="list-i" bindtap="listHandle" data-id="{{item.id}}">
+        <view class="title">{{item.title}}</view>
+        <view class="content">{{item.content}}</view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="time">当前时间：{{time}}</view>
+  <view class="add" bindtap="addHandle">
+    <image src="../../img/edit.png"></image>
+  </view>
+</view>
