@@ -1,11 +1,12 @@
 <view class="container">
   <scroll-view scroll-y="true" class="lists">
-    <block wx:for="{{lists}}">
+    <view wx:for="{{lists}}" wx:key="{{item.id}}">
       <view class="list-i" bindtap="listHandle" data-id="{{item.id}}">
         <view class="title">{{item.title}}</view>
         <view class="content">{{item.content}}</view>
+        <view class="content">{{item.time}}</view>
       </view>
-    </block>
+    </view>
   </scroll-view>
   <view class="time">当前时间：{{time}}</view>
   <view class="add" bindtap="addHandle">

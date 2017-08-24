@@ -27,10 +27,16 @@ Page({
     })
   },
   sureHandle(){
-    var val = this.data.content;
-    var id = this.data.id;
-    updateDate(this,id,val);
-    wx.navigateBack()
+    var re = /^\s*$/g
+    if(!this.data.content || re.test(this.data.content)){
+      wx.showModal({
+        title: '请输入文字',
+      })
+      return;
+    }else{
+      updateDate(this)
+      wx.navigateBack()
+    }
   },
   cancelHandle(){
     wx.navigateBack()
@@ -52,24 +58,29 @@ function getData(id,page){
   }
 }
 
-function updateDate(page,id,val){
-  var arr = wx.getStorage({
-    key: 'txt',
-    success: function(res) {
-      var obj = {};
-      obj.id = id;
-      obj.content = val;
-      obj.title = "title" + res.data.length+1;
-      obj.time = Date.now();
-      var objs = Object.assign({},res.data,obj);
-      var arrs = new Array();
-      arrs.push(objs);
-      wx.setStorage({
-        key: 'txt',
-        data: arrs,
+function updateDate(page){
+  var arr = wx.getStorageSync('txt');
+  if(arr){
+    var hasDate = arr.some((item) => item.id == page.data.id);
+    if (hasDate) {
+      arr.forEach((item) => {
+        if (item.id == page.data.id) {
+          item.content = page.data.content
+          item.time = Date.now()
+        }
       })
-      // res.data.push(obj);
-      // console.log(JSON.stringify(obj))
+    } else {
+      var count = arr.length + 1;
+      var obj = {};
+      obj.id = page.data.id;
+      obj.content = page.data.content;
+      obj.title = "title" + count;
+      obj.time = Date.now();
+      arr.push(obj);
     }
+  }
+  wx.setStorage({
+    key: 'txt',
+    data: arr,
   })
 }

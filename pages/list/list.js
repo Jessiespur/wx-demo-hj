@@ -17,7 +17,7 @@ Page({
         id: 2,
         content: "hejuan",
         title: "titleTwo",
-        time: Date.now(),
+        time: Date.now()
       }
     ]
   },
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    initData(this)
   },
 
   /**
@@ -96,7 +96,7 @@ function initData(page){
   }
   var arrLists = wx.getStorageSync('txt');
   if(arrLists.length){
-    arrLists.forEach((item, i) => {
+    arrLists.forEach((item) => {
       var t = new Date(Number(item.time));
       item.time = time.formatTime(t);
     });
